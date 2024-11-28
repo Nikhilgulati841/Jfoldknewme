@@ -60,14 +60,14 @@ weekdays = {1: "Monday",
 
 start_year=int(input("Enter the starting year\n"))
 end_year=int(input("Enter the ending year\n"))
-day=input("Enter the month and the day| In this Format[ Month(XX)\\Day(XX) ]: ")
-x=datetime.strptime(day,"%m\\%d")
+day=input("Enter the month and the day| In this Format[ Month(XX)/Day(XX) ]: ")
+x=datetime.strptime(day,"%m/%d")
 month=x.month
 day=x.day
 
 
 for i in range(start_year, end_year+1):
-    print("The {}\\{} in the year[{}] has fallen on: {}".format(day,month,i,weekdays[datetime(i,month,day).isoweekday()]))
+    print("The {}/{} in the year[{}] has fallen on: {}".format(day,month,i,weekdays[datetime(i,month,day).isoweekday()]))
 
 
 
@@ -75,15 +75,17 @@ for i in range(start_year, end_year+1):
 
 # ________________________________________________________________________
 
-#datetime(2024,9,16,59,59,59).date()  --> will only print the date and .time()  -->will only print the time
 
 # import calendar
 # from datetime import datetime
+# print(datetime(2024,9,16,23,59,59).date())  #--> will only print the date and .time()  -->will only print the time
 # print(calendar.month_name[9])
 # x=calendar.monthrange(2024,7)
 # # calendar.prcal(2024)
-# print(x)
-# print(x[0])
+# # print("T-",x)
+# print("B-",x[0])
+# print("B-",x[-1])
+
 # y=datetime.strptime(str(x[0]+1),"%d")
 # z=y.strftime("this is %A")
 # print(z)
