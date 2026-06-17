@@ -7,3 +7,31 @@ Categories
 Send the Email
 
 C30
+
+// This function handles the incoming request from Python
+function doPost(e) {
+  try {
+    // 1. Parse the email data sent by Python
+    var data = JSON.parse(e.postData.contents);
+    var targetEmail = data.email;
+    
+    // 2. Open your specific sheet and tab
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Categories");
+    
+    // 3. Update the cell value (Change "A1" to your actual targeted input cell coordinate)
+    var targetCell = sheet.getRange("A1"); 
+    targetCell.setValue(targetEmail);
+    
+    // 4. Call your actual email-sending function
+    // Replace 'sendYourEmailFunction' with the exact name of your email script function
+    sendYourEmailFunction(); 
+    
+    return ContentService.createTextOutput(JSON.stringify({ "status": "Success, email sent!" }))
+                         .setMimeType(ContentService.MimeType.JSON);
+                         
+  } catch (error) {
+    return ContentService.createTextOutput(JSON.stringify({ "status": "Error", "message": error.toString() }))
+                         .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
